@@ -1,0 +1,17 @@
+class Solution:
+    # @param A : list of integers
+    # @return a list of integers
+    def lszero(self, A):
+        n = len(A)
+        Dict = {0:-1}
+        start = end = s = 0
+        
+        for i in range(n):
+            s += A[i]
+            if s in Dict:
+                if i-Dict[s]>end-start:
+                    end = i
+                    start = Dict[s]
+            else:
+                Dict[s] = i
+        return A[start+1:end+1]
