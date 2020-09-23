@@ -1,0 +1,14 @@
+class Solution:
+    # @param A : tuple of integers
+    # @param B : integer
+    # @return a list of integers
+    def twoSum(self, A, B):
+        n = len(A)
+        Dict = {A[i]:0 for i in range(n-1,-1,-1)}
+        for i in range(n):
+            if (B-A[i]) in Dict and Dict[B-A[i]]!=0:
+                return [Dict[B-A[i]],i+1]
+            else:
+                if Dict[A[i]]==0:
+                    Dict[A[i]] = i+1
+        return []
