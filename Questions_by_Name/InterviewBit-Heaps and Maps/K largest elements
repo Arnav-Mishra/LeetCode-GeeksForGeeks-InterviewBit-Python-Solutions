@@ -1,0 +1,13 @@
+import heapq
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return a list of integers
+    def solve(self, A, B):
+        heap = []
+        for i in A[:B]:
+            heapq.heappush(heap,i)
+        for i in A[B:]:
+            heapq.heappush(heap,i)
+            heapq.heappop(heap)
+        return heap
