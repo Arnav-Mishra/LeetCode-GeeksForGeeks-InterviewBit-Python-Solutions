@@ -1,0 +1,22 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        def Maximum(left,right):
+            while left>=0 and right<n:
+                if s[left]!=s[right]:
+                    break
+                left -= 1
+                right += 1
+            return [left+1,right-1]
+        
+        max_palindrome = [0,0]
+        for i in range(n-1):
+            #odd palindrome
+            Palindrome = Maximum(i,i)
+            if Palindrome[1]-Palindrome[0]>max_palindrome[1]-max_palindrome[0]:
+                max_palindrome = Palindrome
+            #even palindrome
+            Palindrome = Maximum(i,i+1)
+            if Palindrome[1]-Palindrome[0]>max_palindrome[1]-max_palindrome[0]:
+                max_palindrome = Palindrome
+        return s[max_palindrome[0]:max_palindrome[1]+1]
