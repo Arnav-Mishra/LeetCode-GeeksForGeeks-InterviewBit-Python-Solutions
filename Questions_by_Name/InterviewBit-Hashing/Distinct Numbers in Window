@@ -1,0 +1,29 @@
+import collections
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return a list of integers
+    def dNums(self, A, B):
+        mp=dict()
+        if B>len(A):
+            return []
+
+        ans=[]
+        for i in range(B):
+            mp[A[i]]=mp.get(A[i],0)
+            mp[A[i]]+=1
+
+        ans.append(len(mp))
+        
+        mp[A[0]]-=1
+        if mp[A[0]]==0:
+            mp.pop(A[0])
+#q.pop(0)
+        for i in range(B,len(A)):
+            mp[A[i]]=mp.get(A[i],0)+1
+            ans.append(len(mp))
+            tmp=A[i-B+1]
+            mp[tmp]-=1
+            if mp[tmp]==0:
+                mp.pop(tmp)
+        return ans
