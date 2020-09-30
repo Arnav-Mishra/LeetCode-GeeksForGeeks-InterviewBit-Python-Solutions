@@ -1,0 +1,19 @@
+class Solution:
+    # @param A : root node of tree
+    # @param B : integer
+    # @return an integer
+    def t2Sum(self, A, B):
+        self.Dict = {}
+        self.f = 0
+        self.solve(A,B)
+        return self.f
+        
+    def solve(self,root,B):
+        if root==None:
+            return
+        self.Dict[root.val] = 1
+        self.solve(root.left,B)
+        if 2*root.val != B and (B-root.val) in self.Dict:
+            self.f = 1
+            return
+        self.solve(root.right,B)
