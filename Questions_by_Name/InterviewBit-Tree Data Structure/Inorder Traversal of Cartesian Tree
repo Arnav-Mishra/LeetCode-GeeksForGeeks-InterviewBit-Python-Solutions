@@ -1,0 +1,15 @@
+class Solution:
+    # @param A : list of integers
+    # @return the root node in the tree
+    def buildTree(self, A):
+        N = len(A)
+        Q = []
+        for i in range(N):
+            node = TreeNode(A[i])
+            while Q and Q[-1].val<node.val:
+                left = Q.pop()
+                node.left = left
+            if Q:
+                Q[-1].right = node
+            Q.append(node)
+        return Q[0]
