@@ -1,0 +1,13 @@
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def solve(self, A):
+        root=float("-infinity")
+        stack=[]
+        for i in range(len(A)):
+            if(A[i]<root):
+                return(0)
+            if(stack and stack[-1]<A[i]):
+                root=stack.pop()
+            stack.append(A[i])
+        return(1)
