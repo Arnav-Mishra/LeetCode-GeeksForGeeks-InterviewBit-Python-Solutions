@@ -1,0 +1,24 @@
+class Solution:
+    # @param A : list of integers
+    # @param B : list of integers
+    # @return a list of integers
+    def solve(self, A, B):
+        import heapq
+        N = len(A)
+        A.sort(reverse=True)
+        B.sort(reverse=True)
+        Visited = set()
+        Heap = []
+        ans = []
+        heapq.heappush(Heap,(-(A[0]+B[0]),(0,0)))
+        Visited.add((0,0))
+        for i in range(N):
+            Sum, (iA,iB) = heapq.heappop(Heap)
+            ans.append(-Sum)
+            if iA<N-1 and (iA+1,iB) not in Visited:
+                Visited.add((iA+1,iB))
+                heapq.heappush(Heap,(-(A[iA+1]+B[iB]),(iA+1,iB)))
+            if iB<N-1 and (iA,iB+1) not in Visited:
+                Visited.add((iA,iB+1))
+                heapq.heappush(Heap,(-(A[iA]+B[iB+1]),(iA,iB+1)))
+        return ans
