@@ -1,0 +1,20 @@
+class Solution:
+    # @param A : root node of tree
+    # @return an integer
+    def maxPathSum(self, A):
+        if A == None:
+            return 0
+        self.ans = A.val
+        self.maxvalue(A)
+        return self.ans
+        
+    def maxvalue(self, root):
+        if root == None:
+            return 0
+        lsum = self.maxvalue(root.left)
+        rsum = self.maxvalue(root.right)
+        if root.val + lsum + rsum > self.ans: #update ans if pathsum is greater
+            self.ans = root.val + lsum + rsum
+        if root.val + max(lsum, rsum) < 0: # return ‘0’ if val becomes negative
+            return 0
+        return root.val + max(lsum, rsum)
