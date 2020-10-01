@@ -1,0 +1,19 @@
+class Solution:
+    # @param A : root node of tree
+    # @param B : integer
+    # @return an integer
+    def hasPathSum(self, A, B):
+        if A.val==B and A.left==None and A.right==None:
+            return 1
+        if A==None:
+            if B==0:
+                return 1
+            return 0
+        
+        t = B-A.val
+        f = 0
+        if A.left is not None:
+            f = f or self.hasPathSum(A.left,t)
+        if A.right is not None:
+            f = f or self.hasPathSum(A.right,t)
+        return
