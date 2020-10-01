@@ -1,0 +1,16 @@
+class Solution:
+    # @param A : root node of tree
+    # @return a list of integers
+    def solve(self, A):
+        self.Hash = {}
+        def Right(root,level):
+            if root==None:
+                return
+            Right(root.right,level+1)
+            
+            if level not in self.Hash:
+                self.Hash[level] = root.val
+            Right(root.left,level+1)
+            
+        Right(A,0)
+        return [self.Hash[i] for i in sorted(self.Hash)]
