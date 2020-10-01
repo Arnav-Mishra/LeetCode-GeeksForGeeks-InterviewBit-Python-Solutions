@@ -1,0 +1,22 @@
+class Solution:
+    # @param A : string
+    # @param B : list of strings
+    # @return a list of strings
+    def wordBreak(self, A, B):
+        Dict = {}
+        def Solve(s):
+            if s in Dict:
+                return Dict[s]
+            ans = []
+            for word in B:
+                if word==s[:len(word)]:
+                    if s==word:
+                        ans.append(word)
+                    else:
+                        List = Solve(s[len(word):])
+                        for i in List:
+                            ans.append(word+' '+i)
+            Dict[s] = sorted(list(set(ans)))
+            return Dict[s]
+            
+        return Solve(A)
