@@ -1,0 +1,24 @@
+class Solution:
+    # @param A : root node of tree
+    # @return a list of list of integers
+    def Sol(self,root,dic,v,l):
+        if root:
+            if v in dic:
+                dic[v].append([l,root.val])
+            else:
+                dic[v] = [[l,root.val]]
+                
+            self.Sol(root.left,dic,v-1,l+1)
+            self.Sol(root.right,dic,v+1,l+1)
+    
+    def verticalOrderTraversal(self, A):
+        Hash = {}
+        ans = []
+        self.Sol(A,Hash,0,0)
+        for i in sorted(Hash):
+            Hash[i] = sorted(Hash[i],key=lambda x:x[0])
+            s = []
+            for ele in Hash[i]:
+                s.append(ele[1])
+            ans.append(s)
+        return ans
