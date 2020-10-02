@@ -1,0 +1,24 @@
+class Solution:
+    # @param A : integer
+    # @param B : integer
+    # @param C : integer
+    # @param D : integer
+    # @return a list of integers
+    def solve(self, A, B, C, D):
+        nA,nB,nC = A,B,C
+        iA,iB,iC = 0,0,0
+        ans = [0]*D
+        for i in range(D):
+            temp = min(nA,nB,nC)
+            ans[i] = temp
+            
+            if ans[i]==nA:
+                nA = A*ans[iA]
+                iA += 1
+            if ans[i]==nB:
+                nB = B*ans[iB]
+                iB += 1
+            if ans[i]==nC:
+                nC = C*ans[iC]
+                iC += 1
+        return ans
