@@ -1,0 +1,14 @@
+class Solution:
+    # @param A : integer
+    # @return an integer
+    global Dict
+    Dict = {0:1,1:1,2:2,3:5}
+    def numTrees(self, A):
+        if A in Dict:
+            return Dict[A]
+        
+        ans = 0
+        for i in range(A):
+            ans += self.numTrees(A-i-1)*self.numTrees(i)
+        Dict[A] = ans
+        return ans
